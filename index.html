@@ -1,0 +1,684 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formulario Pre-Sessao - Holding Familiar</title>
+  <meta name="description" content="Formulario pre-sessao para Sessao de Diagnostico e Viabilidade em Holding Familiar.">
+  <style>
+    :root {
+      --ink: #171717;
+      --muted: #60646c;
+      --paper: #f7f7f4;
+      --white: #ffffff;
+      --line: #dedbd2;
+      --wine: #7a1f2b;
+      --wine-dark: #5b1420;
+      --teal: #0f766e;
+      --teal-soft: #e7f3f1;
+      --radius: 8px;
+      --max: 920px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      letter-spacing: 0;
+    }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 28px));
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--ink);
+      color: var(--white);
+      padding: 54px 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #f2d7dc;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #b9852f;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 48px;
+      max-width: 760px;
+    }
+
+    h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 32px;
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      font-size: 18px;
+    }
+
+    header p {
+      color: rgba(255,255,255,.78);
+      font-size: 18px;
+      max-width: 760px;
+      margin: 18px 0 0;
+    }
+
+    .notice {
+      background: var(--teal-soft);
+      border: 1px solid rgba(15, 118, 110, .22);
+      border-radius: var(--radius);
+      padding: 18px;
+      color: #154a46;
+      margin: 28px 0 0;
+      font-weight: 700;
+    }
+
+    form {
+      padding: 34px 0 70px;
+    }
+
+    section {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 26px;
+      margin-bottom: 18px;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      margin: 0 0 24px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    label,
+    legend {
+      font-weight: 850;
+      color: var(--ink);
+    }
+
+    .required {
+      color: var(--wine);
+      font-weight: 900;
+    }
+
+    .help {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea,
+    select {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      padding: 12px 14px;
+      color: var(--ink);
+      font: inherit;
+    }
+
+    textarea {
+      min-height: 112px;
+      resize: vertical;
+    }
+
+    fieldset {
+      border: 0;
+      padding: 0;
+      margin: 22px 0 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .option {
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 12px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .option input {
+      margin-top: 3px;
+    }
+
+    .actions {
+      position: sticky;
+      bottom: 0;
+      background: rgba(247, 247, 244, .94);
+      border-top: 1px solid var(--line);
+      padding: 14px 0;
+      backdrop-filter: blur(10px);
+    }
+
+    .button {
+      min-height: 50px;
+      border: 0;
+      border-radius: var(--radius);
+      background: var(--wine);
+      color: var(--white);
+      padding: 14px 20px;
+      font-weight: 900;
+      cursor: pointer;
+      width: 100%;
+      font: inherit;
+    }
+
+    .button:hover {
+      background: var(--wine-dark);
+    }
+
+    .fineprint {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    .form-status {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--white);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .form-status.success {
+      border-color: #9ac8bd;
+      background: var(--teal-soft);
+      color: #0f4f49;
+    }
+
+    .form-status.error {
+      border-color: #d8a1a9;
+      background: #fff1f3;
+      color: var(--wine-dark);
+    }
+
+    @media (max-width: 720px) {
+      header {
+        padding: 40px 0;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+
+      section {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="eyebrow"><span class="dot"></span> Sessao de Diagnostico e Viabilidade</div>
+      <h1>Formulario Pre-Sessao - Holding Familiar</h1>
+      <p>Este formulario ajuda Juliano Santos a entender seu contexto familiar, patrimonial e seus objetivos antes da sessao.</p>
+      <div class="notice">
+        A sessao nao substitui o Projeto de Holding e nao entrega parecer juridico formal por escrito. Ela serve para diagnosticar viabilidade, riscos e proximo passo mais prudente.
+      </div>
+    </div>
+  </header>
+
+  <form id="pre-session-form" data-form-endpoint="https://hook.us2.make.com/7aliadh0bwneql0a32r0cy8ofu1wq61p">
+    <div class="wrap">
+      <section>
+        <h2>1. Dados de contato</h2>
+        <p class="section-desc">Vamos comecar pelos seus dados principais de contato.</p>
+        <div class="field">
+          <label for="nome">Nome completo <span class="required">*</span></label>
+          <input id="nome" type="text" required>
+        </div>
+        <div class="field">
+          <label for="email">E-mail <span class="required">*</span></label>
+          <input id="email" type="email" required>
+        </div>
+        <div class="field">
+          <label for="whatsapp">WhatsApp <span class="required">*</span></label>
+          <input id="whatsapp" type="tel" required placeholder="Informe com DDD">
+        </div>
+        <div class="field">
+          <label for="cidade">Cidade e estado <span class="required">*</span></label>
+          <input id="cidade" type="text" required>
+        </div>
+        <fieldset>
+          <legend>Qual o melhor horario para contato, se precisarmos falar antes da sessao?</legend>
+          <label class="option"><input type="radio" name="horario"> Manha</label>
+          <label class="option"><input type="radio" name="horario"> Tarde</label>
+          <label class="option"><input type="radio" name="horario"> Noite</label>
+          <label class="option"><input type="radio" name="horario"> Tanto faz</label>
+        </fieldset>
+      </section>
+
+      <section>
+        <h2>2. Composicao familiar</h2>
+        <p class="section-desc">A composicao familiar influencia diretamente qualquer decisao patrimonial.</p>
+        <div class="field">
+          <label for="estado-civil">Qual e seu estado civil atual? <span class="required">*</span></label>
+          <select id="estado-civil" required>
+            <option value="">Selecione</option>
+            <option>Solteiro(a)</option>
+            <option>Casado(a)</option>
+            <option>Uniao estavel</option>
+            <option>Divorciado(a)</option>
+            <option>Viuvo(a)</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="regime">Se voce e casado(a) ou vive em uniao estavel, qual e o regime de bens? <span class="required">*</span></label>
+          <select id="regime" required>
+            <option value="">Selecione</option>
+            <option>Comunhao parcial de bens</option>
+            <option>Comunhao universal de bens</option>
+            <option>Separacao total de bens</option>
+            <option>Participacao final nos aquestos</option>
+            <option>Nao sei</option>
+            <option>Nao se aplica</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="tempo-relacao">Ha quanto tempo voce esta na relacao atual?</label>
+          <input id="tempo-relacao" type="text" placeholder="Exemplo: 5 anos, 12 anos, casamos ha 1 mes">
+        </div>
+        <fieldset>
+          <legend>Voce tem filhos? <span class="required">*</span></legend>
+          <label class="option"><input type="radio" name="filhos" required> Sim, todos do relacionamento atual</label>
+          <label class="option"><input type="radio" name="filhos"> Sim, de relacionamento anterior</label>
+          <label class="option"><input type="radio" name="filhos"> Sim, do relacionamento atual e de relacionamento anterior</label>
+          <label class="option"><input type="radio" name="filhos"> Nao tenho filhos</label>
+        </fieldset>
+        <div class="field">
+          <label for="herdeiros">Quantos filhos/herdeiros diretos existem hoje? <span class="required">*</span></label>
+          <input id="herdeiros" type="text" required>
+        </div>
+        <fieldset>
+          <legend>Existem filhos menores de idade, pessoas incapazes ou dependentes financeiros? <span class="required">*</span></legend>
+          <label class="option"><input type="radio" name="dependentes" required> Sim</label>
+          <label class="option"><input type="radio" name="dependentes"> Nao</label>
+          <label class="option"><input type="radio" name="dependentes"> Nao sei informar</label>
+        </fieldset>
+        <div class="field">
+          <label for="conflito">Existe algum conflito familiar atual ou potencial que precisa ser considerado?</label>
+          <textarea id="conflito"></textarea>
+          <p class="help">Exemplos: filhos de relacionamentos diferentes, relacao distante com herdeiros, discussao sobre bens, conjuge que precisa ser protegido, socio familiar, enteados, pais idosos, etc.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>3. Patrimonio</h2>
+        <p class="section-desc">Buscamos uma visao geral. Nao precisa enviar documentos nesta etapa.</p>
+        <div class="field">
+          <label for="faixa">Qual e a faixa aproximada do patrimonio familiar? <span class="required">*</span></label>
+          <select id="faixa" required>
+            <option value="">Selecione</option>
+            <option>Ate R$ 500 mil</option>
+            <option>R$ 500 mil a R$ 1 milhao</option>
+            <option>R$ 1 milhao a R$ 2 milhoes</option>
+            <option>R$ 2 milhoes a R$ 5 milhoes</option>
+            <option>R$ 5 milhoes a R$ 10 milhoes</option>
+            <option>Acima de R$ 10 milhoes</option>
+            <option>Prefiro informar na sessao</option>
+          </select>
+        </div>
+        <fieldset>
+          <legend>Quais tipos de bens existem hoje? <span class="required">*</span></legend>
+          <label class="option"><input type="checkbox"> Imovel residencial</label>
+          <label class="option"><input type="checkbox"> Imoveis de aluguel</label>
+          <label class="option"><input type="checkbox"> Terrenos</label>
+          <label class="option"><input type="checkbox"> Imoveis rurais</label>
+          <label class="option"><input type="checkbox"> Empresa operacional</label>
+          <label class="option"><input type="checkbox"> Participacao em empresas</label>
+          <label class="option"><input type="checkbox"> Veiculos</label>
+          <label class="option"><input type="checkbox"> Investimentos financeiros</label>
+          <label class="option"><input type="checkbox"> Previdencia privada</label>
+          <label class="option"><input type="checkbox"> Outros</label>
+        </fieldset>
+        <div class="field">
+          <label for="imoveis">Quantos imoveis existem aproximadamente?</label>
+          <input id="imoveis" type="text">
+        </div>
+        <fieldset>
+          <legend>Existem bens financiados, alienados ou com alguma restricao? <span class="required">*</span></legend>
+          <label class="option"><input type="radio" name="restricao" required> Sim</label>
+          <label class="option"><input type="radio" name="restricao"> Nao</label>
+          <label class="option"><input type="radio" name="restricao"> Nao sei</label>
+        </fieldset>
+        <div class="field">
+          <label for="titularidade">Existem bens em nome de empresa ou apenas em nome de pessoas fisicas? <span class="required">*</span></label>
+          <select id="titularidade" required>
+            <option value="">Selecione</option>
+            <option>Apenas pessoa fisica</option>
+            <option>Apenas pessoa juridica</option>
+            <option>Parte em pessoa fisica e parte em pessoa juridica</option>
+            <option>Nao sei informar</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="empresa">Existe empresa operacional na familia? <span class="required">*</span></label>
+          <select id="empresa" required>
+            <option value="">Selecione</option>
+            <option>Sim, sou socio(a) ou proprietario(a)</option>
+            <option>Sim, meu conjuge ou familiares participam</option>
+            <option>Nao</option>
+            <option>Nao sei se se aplica</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="atividade">Se existe empresa, qual atividade ela exerce?</label>
+          <input id="atividade" type="text">
+        </div>
+        <fieldset>
+          <legend>A empresa possui funcionarios?</legend>
+          <label class="option"><input type="radio" name="funcionarios"> Sim</label>
+          <label class="option"><input type="radio" name="funcionarios"> Nao</label>
+          <label class="option"><input type="radio" name="funcionarios"> Nao se aplica</label>
+        </fieldset>
+      </section>
+
+      <section>
+        <h2>4. Holding existente</h2>
+        <p class="section-desc">Se voce ja tem uma holding ou esta abrindo uma, estas respostas ajudam a entender o ponto de partida.</p>
+        <div class="field">
+          <label for="tem-holding">Voce ja tem uma holding familiar constituida? <span class="required">*</span></label>
+          <select id="tem-holding" required>
+            <option value="">Selecione</option>
+            <option>Sim</option>
+            <option>Nao</option>
+            <option>Estou em processo de abertura</option>
+            <option>Nao sei se a estrutura que tenho e uma holding</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="quando-holding">Se ja existe holding, quando ela foi criada?</label>
+          <input id="quando-holding" type="text">
+        </div>
+        <div class="field">
+          <label for="quem-estruturou">Quem estruturou a holding existente?</label>
+          <select id="quem-estruturou">
+            <option value="">Selecione</option>
+            <option>Advogado</option>
+            <option>Contador</option>
+            <option>Consultoria</option>
+            <option>Banco/assessoria financeira</option>
+            <option>Familiar/socio</option>
+            <option>Nao sei informar</option>
+            <option>Nao se aplica</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="duvida-holding">Qual e sua principal duvida sobre a holding atual?</label>
+          <textarea id="duvida-holding"></textarea>
+        </div>
+      </section>
+
+      <section>
+        <h2>5. Objetivo da sessao</h2>
+        <p class="section-desc">Estas respostas ajudam a direcionar a sessao para o que realmente importa para voce.</p>
+        <fieldset>
+          <legend>Qual e o principal motivo para voce buscar essa sessao? <span class="required">*</span></legend>
+          <label class="option"><input type="checkbox"> Evitar inventario desorganizado</label>
+          <label class="option"><input type="checkbox"> Proteger conjuge sobrevivente</label>
+          <label class="option"><input type="checkbox"> Evitar conflito entre filhos/herdeiros</label>
+          <label class="option"><input type="checkbox"> Organizar patrimonio com imoveis</label>
+          <label class="option"><input type="checkbox"> Organizar empresa familiar</label>
+          <label class="option"><input type="checkbox"> Reduzir riscos juridicos/patrimoniais</label>
+          <label class="option"><input type="checkbox"> Revisar holding existente</label>
+          <label class="option"><input type="checkbox"> Entender se holding faz sentido</label>
+          <label class="option"><input type="checkbox"> Planejar doacao de cotas ou regras familiares</label>
+          <label class="option"><input type="checkbox"> Outro</label>
+        </fieldset>
+        <div class="field">
+          <label for="clareza">Se voce pudesse sair da sessao com uma clareza principal, qual seria? <span class="required">*</span></label>
+          <textarea id="clareza" required></textarea>
+          <p class="help">Exemplo: "Quero saber se preciso de holding", "quero proteger minha esposa", "quero evitar briga entre filhos", "quero saber se minha holding esta correta".</p>
+        </div>
+        <div class="field">
+          <label for="preocupacao">O que mais te preocupa hoje se nada for feito? <span class="required">*</span></label>
+          <textarea id="preocupacao" required></textarea>
+        </div>
+        <div class="field">
+          <label for="urgencia">Existe alguma decisao urgente ou prazo relevante?</label>
+          <textarea id="urgencia"></textarea>
+          <p class="help">Exemplos: compra/venda de imovel, casamento, divorcio, doacao, inventario em andamento, alteracao societaria, problema familiar.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>6. Participantes da sessao</h2>
+        <p class="section-desc">Sempre que possivel, os principais decisores devem participar da sessao.</p>
+        <fieldset>
+          <legend>Quem participara da sessao? <span class="required">*</span></legend>
+          <label class="option"><input type="checkbox"> Apenas eu</label>
+          <label class="option"><input type="checkbox"> Conjuge</label>
+          <label class="option"><input type="checkbox"> Filho(s)</label>
+          <label class="option"><input type="checkbox"> Socio(s)</label>
+          <label class="option"><input type="checkbox"> Outro familiar</label>
+          <label class="option"><input type="checkbox"> Assessor/contador/advogado da familia</label>
+          <label class="option"><input type="checkbox"> Ainda nao sei</label>
+        </fieldset>
+        <div class="field">
+          <label for="deveria-participar">Existe alguem que voce acredita que deveria participar, mas talvez nao participe?</label>
+          <textarea id="deveria-participar"></textarea>
+        </div>
+      </section>
+
+      <section>
+        <h2>7. Agenda e formato</h2>
+        <p class="section-desc">Estas informacoes ajudam a organizar o agendamento.</p>
+        <div class="field">
+          <label for="formato">Voce prefere sessao online ou presencial? <span class="required">*</span></label>
+          <select id="formato" required>
+            <option value="">Selecione</option>
+            <option>Online</option>
+            <option>Presencial, se houver disponibilidade</option>
+            <option>Tanto faz</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="agenda">Quais dias/horarios costumam funcionar melhor para voce? <span class="required">*</span></label>
+          <textarea id="agenda" required></textarea>
+        </div>
+      </section>
+
+      <section>
+        <h2>8. Confirmacoes</h2>
+        <p class="section-desc">Para alinhar expectativas sobre a Sessao de Diagnostico e Viabilidade.</p>
+        <label class="option"><input type="checkbox" required> Sim, compreendo que a sessao serve para diagnosticar viabilidade, riscos e proximo passo, e que eventual Projeto de Holding e uma etapa posterior.</label>
+        <label class="option"><input type="checkbox" required> Sim, compreendo que a sessao entrega orientacao verbal estruturada. Documentos, relatorios ou projeto detalhado dependem de contratacao posterior, se aplicavel.</label>
+        <label class="option"><input type="checkbox" required> Sim, autorizo o uso das informacoes para preparacao e conducao da sessao, respeitando sigilo profissional e finalidade do atendimento.</label>
+      </section>
+    </div>
+
+    <div class="actions">
+      <div class="wrap">
+        <button class="button" type="submit">Enviar formulario</button>
+        <div class="form-status" id="form-status" role="status" aria-live="polite">
+          Formulario pronto para envio. Configure o endpoint antes de publicar.
+        </div>
+        <p class="fineprint">Para uso real, configure o endpoint do Make, Tally, Google Forms, Jotform ou backend proprio no atributo <code>data-form-endpoint</code> do formulario.</p>
+      </div>
+    </div>
+  </form>
+  <script>
+    (function () {
+      const form = document.querySelector("#pre-session-form");
+      const status = document.querySelector("#form-status");
+      const button = form.querySelector("button[type='submit']");
+
+      function setStatus(message, type) {
+        status.textContent = message;
+        status.className = "form-status" + (type ? " " + type : "");
+      }
+
+      function getLabelText(control) {
+        if (control.type === "radio" || control.type === "checkbox") {
+          const fieldset = control.closest("fieldset");
+          if (fieldset) {
+            const legend = fieldset.querySelector("legend");
+            if (legend) return legend.textContent.replace("*", "").trim();
+          }
+        }
+
+        if (control.id) {
+          const directLabel = form.querySelector("label[for='" + control.id + "']");
+          if (directLabel) return directLabel.textContent.replace("*", "").trim();
+        }
+
+        const label = control.closest("label");
+        if (label) return label.textContent.replace("*", "").trim();
+
+        const fieldset = control.closest("fieldset");
+        if (fieldset) {
+          const legend = fieldset.querySelector("legend");
+          if (legend) return legend.textContent.replace("*", "").trim();
+        }
+
+        return control.name || control.id || "campo";
+      }
+
+      function collectFormData() {
+        const payload = {
+          submitted_at: new Date().toISOString(),
+          form_name: "Formulario Pre-Sessao - Diagnostico e Viabilidade Holding Familiar",
+          source: window.location.href,
+          answers: {}
+        };
+
+        const controls = Array.from(form.querySelectorAll("input, select, textarea"));
+
+        controls.forEach(function (control) {
+          if (control.type === "radio" && !control.checked) return;
+
+          const key = getLabelText(control);
+
+          if (control.type === "radio") {
+            const value = control.closest("label")
+              ? control.closest("label").textContent.replace("*", "").trim()
+              : control.value;
+            payload.answers[key] = value;
+            return;
+          }
+
+          if (control.type === "checkbox") {
+            if (!control.checked) return;
+            const value = control.closest("label")
+              ? control.closest("label").textContent.replace("*", "").trim()
+              : "Sim";
+
+            if (!payload.answers[key]) payload.answers[key] = [];
+            if (Array.isArray(payload.answers[key])) {
+              payload.answers[key].push(value);
+            } else {
+              payload.answers[key] = [payload.answers[key], value];
+            }
+            return;
+          }
+
+          payload.answers[key] = control.value;
+        });
+
+        payload.buyer_name = payload.answers["Nome completo"] || "";
+        payload.buyer_email = payload.answers["E-mail"] || "";
+        payload.buyer_phone = payload.answers["WhatsApp"] || "";
+
+        return payload;
+      }
+
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        if (!form.reportValidity()) return;
+
+        const endpoint = form.dataset.formEndpoint.trim();
+        const payload = collectFormData();
+
+        if (!endpoint) {
+          console.info("Formulario pre-sessao pronto para envio:", payload);
+          setStatus("Formulario validado. Falta configurar o endpoint de envio antes de publicar.", "error");
+          return;
+        }
+
+        button.disabled = true;
+        button.textContent = "Enviando...";
+        setStatus("Enviando suas respostas...", "");
+
+        try {
+          const response = await fetch(endpoint, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+          });
+
+          if (!response.ok) {
+            throw new Error("HTTP " + response.status);
+          }
+
+          form.reset();
+          setStatus("Formulario enviado com sucesso. A equipe recebeu suas respostas.", "success");
+        } catch (error) {
+          console.error(error);
+          setStatus("Nao foi possivel enviar agora. Tente novamente ou fale com a equipe pelo WhatsApp.", "error");
+        } finally {
+          button.disabled = false;
+          button.textContent = "Enviar formulario";
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
+
