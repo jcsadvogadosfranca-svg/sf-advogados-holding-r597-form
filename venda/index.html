@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sessao de Diagnostico e Viabilidade - Holding Familiar</title>
+  <meta name="description" content="Sessao de Diagnostico e Viabilidade para entender se a Holding Familiar faz sentido para sua familia e qual deve ser o proximo passo.">
+  <style>
+    :root {
+      --ink: #171717;
+      --muted: #5f646d;
+      --paper: #f6f5f0;
+      --white: #ffffff;
+      --line: #dedbd2;
+      --wine: #7a1f2b;
+      --wine-dark: #581520;
+      --gold: #b9852f;
+      --teal: #0f766e;
+      --teal-soft: #e7f3f1;
+      --max: 1120px;
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      letter-spacing: 0;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: var(--ink);
+      color: var(--white);
+      border-bottom: 1px solid rgba(255, 255, 255, .12);
+    }
+
+    .topbar-inner {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(255, 255, 255, .34);
+      display: grid;
+      place-items: center;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 900;
+      color: #f3dca5;
+    }
+
+    .topbar a {
+      text-decoration: none;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, .78);
+    }
+
+    .hero {
+      background: var(--ink);
+      color: var(--white);
+      padding: 58px 0 42px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.06fr) minmax(320px, .74fr);
+      gap: 44px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #f2d7dc;
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 820px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 56px;
+      font-weight: 900;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin: 22px 0 0;
+      color: rgba(255, 255, 255, .82);
+      font-size: 20px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 52px;
+      border-radius: var(--radius);
+      padding: 14px 22px;
+      font-weight: 900;
+      text-decoration: none;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .button.primary {
+      background: var(--wine);
+      color: var(--white);
+    }
+
+    .button.primary:hover {
+      background: var(--wine-dark);
+    }
+
+    .button.secondary {
+      border-color: rgba(255, 255, 255, .28);
+      color: var(--white);
+    }
+
+    .hero-note {
+      color: rgba(255, 255, 255, .68);
+      font-size: 14px;
+      margin-top: 14px;
+    }
+
+    .visual {
+      min-height: 420px;
+      border: 1px solid rgba(255, 255, 255, .16);
+      background:
+        linear-gradient(rgba(23, 23, 23, .08), rgba(23, 23, 23, .82)),
+        url("https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=82");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+    }
+
+    .visual-panel {
+      width: 100%;
+      background: rgba(255, 255, 255, .94);
+      color: var(--ink);
+      border-radius: var(--radius);
+      padding: 20px;
+      border: 1px solid rgba(0, 0, 0, .08);
+    }
+
+    .price {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 42px;
+      font-weight: 900;
+      color: var(--wine);
+      margin: 4px 0;
+    }
+
+    .fine {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+    }
+
+    main {
+      padding: 44px 0 72px;
+    }
+
+    .section {
+      padding: 42px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section:last-child {
+      border-bottom: 0;
+    }
+
+    .section h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 36px;
+      max-width: 740px;
+    }
+
+    .section-intro {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 18px;
+      margin: 14px 0 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .item {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px;
+    }
+
+    .item h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .item p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .band {
+      background: var(--teal-soft);
+      border: 1px solid #b9d9d3;
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-top: 24px;
+    }
+
+    .band strong {
+      color: #0d4f49;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(320px, .55fr);
+      gap: 28px;
+      align-items: start;
+      margin-top: 24px;
+    }
+
+    .list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .list li {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+    }
+
+    .checkout-box {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      position: sticky;
+      top: 20px;
+    }
+
+    .checkout-box .button {
+      width: 100%;
+      margin-top: 16px;
+    }
+
+    .legal {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 16px;
+    }
+
+    footer {
+      background: var(--ink);
+      color: rgba(255, 255, 255, .74);
+      padding: 28px 0;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .split,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      .visual {
+        min-height: 320px;
+      }
+
+      .top-actions {
+        display: none;
+      }
+    }
+
+    @media (max-width: 560px) {
+      h1 {
+        font-size: 36px;
+      }
+
+      .lead,
+      .section-intro {
+        font-size: 16px;
+      }
+
+      .hero {
+        padding-top: 38px;
+      }
+
+      .hero-actions .button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top" aria-label="Santos e Faleiros Advogados">
+        <span class="brand-mark">SF</span>
+        <span>Santos e Faleiros Advogados</span>
+      </a>
+      <nav class="top-actions" aria-label="Navegacao principal">
+        <a href="#sessao">A sessao</a>
+        <a href="#entrega">O que acontece</a>
+        <a href="#checkout">Inscricao</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> Planejamento Patrimonial Familiar</div>
+        <h1>Sessao de Diagnostico e Viabilidade para Holding Familiar</h1>
+        <p class="lead">Uma conversa estruturada para entender se uma Holding Familiar faz sentido para sua familia, quais riscos precisam ser mapeados e qual deve ser o proximo passo antes de contratar um projeto completo.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="https://pay.hotmart.com/I102046218O?off=yypzjz4q">Garantir minha sessao</a>
+          <a class="button secondary" href="#sessao">Ver como funciona</a>
+        </div>
+        <p class="hero-note">Valor validado no checkout: R$ 597 a vista. Parcelamento exibido pela Hotmart conforme regras da plataforma.</p>
+      </div>
+
+      <aside class="visual" aria-label="Mesa com documentos patrimoniais">
+        <div class="visual-panel">
+          <p class="fine">Oferta de entrada</p>
+          <div class="price">R$ 597</div>
+          <p class="fine">Sessao individual de diagnostico e viabilidade. O Projeto de Holding, se indicado, e uma etapa posterior.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <main>
+    <section class="section" id="sessao">
+      <div class="wrap">
+        <h2>Antes de abrir empresa, transferir bens ou assinar contrato, entenda o desenho do seu caso.</h2>
+        <p class="section-intro">Holding Familiar nao deve ser improviso. A sessao existe para organizar as perguntas certas antes de uma decisao patrimonial relevante.</p>
+
+        <div class="grid">
+          <article class="item">
+            <h3>Viabilidade</h3>
+            <p>Entender se a Holding Familiar e adequada para sua realidade familiar, patrimonial e empresarial.</p>
+          </article>
+          <article class="item">
+            <h3>Riscos</h3>
+            <p>Identificar pontos sensiveis como regime de bens, herdeiros, conflitos, empresas operacionais e estruturas ja existentes.</p>
+          </article>
+          <article class="item">
+            <h3>Proximo passo</h3>
+            <p>Definir se faz sentido avancar para um Projeto de Holding Familiar, revisar o que ja existe ou seguir outro caminho.</p>
+          </article>
+        </div>
+
+        <div class="band">
+          <strong>Importante:</strong> a sessao nao e planejamento sucessorio generico nem promessa de economia tributaria. O foco e diagnosticar organizacao patrimonial familiar por metodo, com prudencia e clareza.
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="entrega">
+      <div class="wrap split">
+        <div>
+          <h2>O que acontece depois da compra</h2>
+          <p class="section-intro">Depois da confirmacao do pagamento, voce recebe as orientacoes para agendar a sessao e preencher um formulario pre-sessao.</p>
+
+          <ul class="list">
+            <li>Voce recebe o link para agendamento.</li>
+            <li>Voce preenche o formulario pre-sessao para organizar dados familiares, patrimoniais e objetivos.</li>
+            <li>Quando fizer sentido, os principais decisores devem participar da sessao.</li>
+            <li>Na sessao, o caso e analisado para indicar o proximo passo mais prudente.</li>
+          </ul>
+        </div>
+
+        <aside class="checkout-box" id="checkout">
+          <h2>Inscricao</h2>
+          <p class="section-intro">Sessao de Diagnostico e Viabilidade - Holding Familiar.</p>
+          <div class="price">R$ 597</div>
+          <p class="fine">Pagamento processado pela Hotmart.</p>
+          <a class="button primary" href="https://pay.hotmart.com/I102046218O?off=yypzjz4q">Ir para o checkout</a>
+          <p class="legal">A sessao nao substitui o Projeto de Holding Familiar, nao inclui parecer juridico formal por escrito e nao entrega documentos societarios. Se houver avancao para projeto, as condicoes serao tratadas em etapa posterior.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <h2>Para quem esta sessao tende a fazer sentido</h2>
+        <div class="grid">
+          <article class="item">
+            <h3>Familias com imoveis</h3>
+            <p>Quando ha patrimonio imobiliario e duvidas sobre organizacao, protecao e continuidade familiar.</p>
+          </article>
+          <article class="item">
+            <h3>Empresarios e socios familiares</h3>
+            <p>Quando patrimonio e empresa se misturam e e preciso separar risco operacional de patrimonio familiar.</p>
+          </article>
+          <article class="item">
+            <h3>Quem ja tem holding</h3>
+            <p>Quando existe uma estrutura anterior e a familia precisa entender se ela esta coerente com seus objetivos atuais.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Santos e Faleiros Advogados. Atendimento juridico sujeito a analise individual do caso concreto.
+    </div>
+  </footer>
+</body>
+</html>
