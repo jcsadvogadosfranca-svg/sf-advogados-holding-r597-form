@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Questionario Pre-Sessao - Sessao de Viabilidade</title>
+  <meta name="description" content="Questionario pre-sessao para Sessao Estrategica de Viabilidade.">
+  <style>
+    :root {
+      --ink: #171717;
+      --muted: #5f646d;
+      --paper: #f7f7f4;
+      --white: #ffffff;
+      --line: #dedbd2;
+      --wine: #7a1f2b;
+      --wine-dark: #5b1420;
+      --teal: #0f766e;
+      --teal-soft: #e7f3f1;
+      --radius: 8px;
+      --max: 920px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 28px));
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--ink);
+      color: var(--white);
+      padding: 46px 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #f2d7dc;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #b9852f;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.12;
+    }
+
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(34px, 6vw, 50px);
+      max-width: 780px;
+    }
+
+    h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    header p {
+      color: rgba(255,255,255,.78);
+      font-size: 18px;
+      max-width: 760px;
+      margin: 18px 0 0;
+    }
+
+    .notice {
+      background: var(--teal-soft);
+      border: 1px solid rgba(15, 118, 110, .22);
+      border-radius: var(--radius);
+      padding: 18px;
+      color: #154a46;
+      margin: 24px 0 0;
+      font-weight: 700;
+    }
+
+    form { padding: 32px 0 70px; }
+
+    section {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 18px;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      margin: 0 0 22px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    label, legend {
+      font-weight: 850;
+      color: var(--ink);
+    }
+
+    .required {
+      color: var(--wine);
+      font-weight: 900;
+    }
+
+    .help {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid #cfcac0;
+      border-radius: var(--radius);
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+      padding: 12px 13px;
+    }
+
+    textarea {
+      min-height: 112px;
+      resize: vertical;
+    }
+
+    .options {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .option {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 12px;
+      font-weight: 650;
+    }
+
+    .option input {
+      width: auto;
+      margin-top: 4px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .button {
+      border: 0;
+      border-radius: var(--radius);
+      background: var(--wine);
+      color: var(--white);
+      padding: 14px 20px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .button:hover { background: var(--wine-dark); }
+    .button[disabled] { opacity: .65; cursor: wait; }
+
+    .form-status {
+      color: var(--muted);
+      font-weight: 750;
+    }
+
+    .form-status.success { color: var(--teal); }
+    .form-status.error { color: var(--wine); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="eyebrow"><span class="dot"></span> Questionario pre-sessao</div>
+      <h1>Sessao Estrategica de Viabilidade</h1>
+      <p>Preencha estas informacoes antes da sessao para que a conversa va direto ao diagnostico, aos riscos e aos proximos passos possiveis.</p>
+      <div class="notice">Se houver conjuge, socio, familiar ou outra pessoa que decida junto sobre os imoveis ou patrimonio, combine para que essa pessoa participe da sessao.</div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <form id="pre-session-form" data-form-endpoint="https://hook.us2.make.com/7aliadh0bwneql0a32r0cy8ofu1wq61p">
+      <section>
+        <h2>Dados de contato</h2>
+        <p class="section-desc">Informe os dados principais para localizarmos sua compra e sua sessao.</p>
+
+        <div class="field">
+          <label for="nome">Nome completo <span class="required">*</span></label>
+          <input id="nome" type="text" autocomplete="name" required>
+        </div>
+
+        <div class="field">
+          <label for="email">E-mail usado na compra <span class="required">*</span></label>
+          <input id="email" type="email" autocomplete="email" required>
+        </div>
+
+        <div class="field">
+          <label for="whatsapp">WhatsApp <span class="required">*</span></label>
+          <input id="whatsapp" type="tel" autocomplete="tel" placeholder="Informe com DDD" required>
+        </div>
+      </section>
+
+      <section>
+        <h2>Contexto patrimonial</h2>
+        <p class="section-desc">Nao precisa enviar documentos agora. A ideia e formar um mapa inicial do caso.</p>
+
+        <div class="field">
+          <label for="objetivo">Qual e o principal motivo da sessao? <span class="required">*</span></label>
+          <textarea id="objetivo" required placeholder="Exemplo: organizar imoveis, evitar inventario complicado, proteger conjuge, reduzir conflitos familiares, avaliar se holding faz sentido."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="imoveis">Quantos imoveis existem hoje e como eles sao usados?</label>
+          <textarea id="imoveis" placeholder="Exemplo: moradia, aluguel residencial, comercial, rural, imovel em nome de empresa, etc."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="faixa">Qual e a faixa aproximada do patrimonio envolvido? <span class="required">*</span></label>
+          <select id="faixa" required>
+            <option value="">Selecione</option>
+            <option>Ate R$ 500 mil</option>
+            <option>R$ 500 mil a R$ 1 milhao</option>
+            <option>R$ 1 milhao a R$ 3 milhoes</option>
+            <option>R$ 3 milhoes a R$ 5 milhoes</option>
+            <option>Acima de R$ 5 milhoes</option>
+            <option>Nao sei informar agora</option>
+          </select>
+        </div>
+      </section>
+
+      <section>
+        <h2>Familia e decisores</h2>
+        <p class="section-desc">Esta parte ajuda a entender quem precisa participar da decisao.</p>
+
+        <div class="field">
+          <label for="estado-civil">Estado civil atual <span class="required">*</span></label>
+          <select id="estado-civil" required>
+            <option value="">Selecione</option>
+            <option>Solteiro(a)</option>
+            <option>Casado(a)</option>
+            <option>Uniao estavel</option>
+            <option>Divorciado(a)</option>
+            <option>Viuvo(a)</option>
+            <option>Outro</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="regime">Se for casado(a) ou viver em uniao estavel, qual e o regime de bens?</label>
+          <select id="regime">
+            <option value="">Selecione, se souber</option>
+            <option>Comunhao parcial de bens</option>
+            <option>Comunhao universal de bens</option>
+            <option>Separacao total de bens</option>
+            <option>Participacao final nos aquestos</option>
+            <option>Nao sei</option>
+            <option>Nao se aplica</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <legend>Quem deve participar da sessao?</legend>
+          <div class="options">
+            <label class="option"><input type="checkbox" name="decisores"> Apenas eu decido sobre esse assunto</label>
+            <label class="option"><input type="checkbox" name="decisores"> Meu conjuge ou companheiro(a)</label>
+            <label class="option"><input type="checkbox" name="decisores"> Filhos ou herdeiros envolvidos</label>
+            <label class="option"><input type="checkbox" name="decisores"> Socio ou familiar que decide junto</label>
+            <label class="option"><input type="checkbox" name="decisores"> Contador ou consultor de confianca</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="conflitos">Existe algum conflito, risco ou ponto sensivel que devemos considerar?</label>
+          <textarea id="conflitos" placeholder="Exemplos: filhos de relacionamentos diferentes, conjuge a proteger, herdeiro distante, imovel alugado, socio familiar, inventario anterior, discussao familiar."></textarea>
+        </div>
+      </section>
+
+      <section>
+        <h2>Preparacao da sessao</h2>
+        <p class="section-desc">Essas respostas ajudam a deixar a sessao mais objetiva.</p>
+
+        <div class="field">
+          <label for="duvidas">Quais perguntas voce quer sair da sessao sabendo responder? <span class="required">*</span></label>
+          <textarea id="duvidas" required></textarea>
+        </div>
+
+        <div class="field">
+          <label for="ir">Voce consegue ter em maos a ultima Declaracao de Imposto de Renda na sessao?</label>
+          <select id="ir">
+            <option value="">Selecione</option>
+            <option>Sim</option>
+            <option>Nao</option>
+            <option>Vou tentar separar antes da sessao</option>
+          </select>
+        </div>
+      </section>
+
+      <section>
+        <h2>Confirmacao</h2>
+        <label class="option"><input id="ciencia" type="checkbox" required> Entendo que esta sessao serve para diagnosticar viabilidade e proximos passos, e que todos os decisores relevantes devem participar sempre que possivel.</label>
+
+        <div class="actions">
+          <button class="button" type="submit">Enviar questionario</button>
+          <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+        </div>
+      </section>
+    </form>
+  </main>
+
+  <script>
+    const form = document.querySelector("#pre-session-form");
+    const statusEl = document.querySelector("#form-status");
+
+    function fieldValue(selector) {
+      const el = document.querySelector(selector);
+      return el ? el.value.trim() : "";
+    }
+
+    function checkedValues(name) {
+      return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map((item) => item.parentElement.textContent.trim());
+    }
+
+    function setStatus(message, type) {
+      statusEl.textContent = message;
+      statusEl.className = `form-status ${type || ""}`;
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const endpoint = form.dataset.formEndpoint;
+      const url = new URL(window.location.href);
+      const payload = {
+        source: "vsl-r197",
+        task_id: url.searchParams.get("utm_content") || "",
+        buyer_name: fieldValue("#nome"),
+        buyer_email: fieldValue("#email"),
+        buyer_phone: fieldValue("#whatsapp"),
+        answers: {
+          "Nome completo": fieldValue("#nome"),
+          "E-mail": fieldValue("#email"),
+          "WhatsApp": fieldValue("#whatsapp"),
+          "Principal motivo da sessao": fieldValue("#objetivo"),
+          "Imoveis e uso atual": fieldValue("#imoveis"),
+          "Faixa aproximada do patrimonio": fieldValue("#faixa"),
+          "Estado civil": fieldValue("#estado-civil"),
+          "Regime de bens": fieldValue("#regime"),
+          "Decisores que devem participar": checkedValues("decisores").join("; "),
+          "Conflitos ou pontos sensiveis": fieldValue("#conflitos"),
+          "Perguntas para a sessao": fieldValue("#duvidas"),
+          "Declaracao de IR em maos": fieldValue("#ir"),
+          "Ciencia": document.querySelector("#ciencia").checked ? "Sim" : "Nao"
+        },
+        submitted_at: new Date().toISOString()
+      };
+
+      const button = form.querySelector("button[type='submit']");
+      button.disabled = true;
+      button.textContent = "Enviando...";
+      setStatus("Enviando suas respostas...", "");
+
+      try {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        if (!response.ok) throw new Error("Falha no envio");
+        setStatus("Questionario enviado. Obrigado.", "success");
+        form.reset();
+      } catch (error) {
+        setStatus("Nao foi possivel enviar agora. Tente novamente ou fale com a equipe pelo WhatsApp.", "error");
+      } finally {
+        button.disabled = false;
+        button.textContent = "Enviar questionario";
+      }
+    });
+  </script>
+</body>
+</html>
