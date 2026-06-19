@@ -348,6 +348,29 @@
       return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map((item) => item.parentElement.textContent.trim());
     }
 
+    function buildSummary(answers) {
+      return [
+        "QUESTIONARIO PRE-SESSAO - VSL R$ 197",
+        "",
+        `Nome completo: ${answers["Nome completo"] || ""}`,
+        `E-mail: ${answers["E-mail"] || ""}`,
+        `WhatsApp: ${answers["WhatsApp"] || ""}`,
+        "",
+        `Principal motivo da sessao: ${answers["Principal motivo da sessao"] || ""}`,
+        `Imoveis e uso atual: ${answers["Imoveis e uso atual"] || ""}`,
+        `Faixa aproximada do patrimonio: ${answers["Faixa aproximada do patrimonio"] || ""}`,
+        "",
+        `Estado civil: ${answers["Estado civil"] || ""}`,
+        `Regime de bens: ${answers["Regime de bens"] || ""}`,
+        `Decisores que devem participar: ${answers["Decisores que devem participar"] || ""}`,
+        `Conflitos ou pontos sensiveis: ${answers["Conflitos ou pontos sensiveis"] || ""}`,
+        "",
+        `Perguntas para a sessao: ${answers["Perguntas para a sessao"] || ""}`,
+        `Declaracao de IR em maos: ${answers["Declaracao de IR em maos"] || ""}`,
+        `Ciencia: ${answers["Ciencia"] || ""}`
+      ].join("\n");
+    }
+
     function setStatus(message, type) {
       statusEl.textContent = message;
       statusEl.className = `form-status ${type || ""}`;
@@ -357,27 +380,30 @@
       event.preventDefault();
       const endpoint = form.dataset.formEndpoint;
       const url = new URL(window.location.href);
+      const answers = {
+        "Nome completo": fieldValue("#nome"),
+        "E-mail": fieldValue("#email"),
+        "WhatsApp": fieldValue("#whatsapp"),
+        "Principal motivo da sessao": fieldValue("#objetivo"),
+        "Imoveis e uso atual": fieldValue("#imoveis"),
+        "Faixa aproximada do patrimonio": fieldValue("#faixa"),
+        "Estado civil": fieldValue("#estado-civil"),
+        "Regime de bens": fieldValue("#regime"),
+        "Decisores que devem participar": checkedValues("decisores").join("; "),
+        "Conflitos ou pontos sensiveis": fieldValue("#conflitos"),
+        "Perguntas para a sessao": fieldValue("#duvidas"),
+        "Declaracao de IR em maos": fieldValue("#ir"),
+        "Ciencia": document.querySelector("#ciencia").checked ? "Sim" : "Nao"
+      };
+
       const payload = {
         source: "vsl-r197",
         task_id: url.searchParams.get("utm_content") || "",
         buyer_name: fieldValue("#nome"),
         buyer_email: fieldValue("#email"),
         buyer_phone: fieldValue("#whatsapp"),
-        answers: {
-          "Nome completo": fieldValue("#nome"),
-          "E-mail": fieldValue("#email"),
-          "WhatsApp": fieldValue("#whatsapp"),
-          "Principal motivo da sessao": fieldValue("#objetivo"),
-          "Imoveis e uso atual": fieldValue("#imoveis"),
-          "Faixa aproximada do patrimonio": fieldValue("#faixa"),
-          "Estado civil": fieldValue("#estado-civil"),
-          "Regime de bens": fieldValue("#regime"),
-          "Decisores que devem participar": checkedValues("decisores").join("; "),
-          "Conflitos ou pontos sensiveis": fieldValue("#conflitos"),
-          "Perguntas para a sessao": fieldValue("#duvidas"),
-          "Declaracao de IR em maos": fieldValue("#ir"),
-          "Ciencia": document.querySelector("#ciencia").checked ? "Sim" : "Nao"
-        },
+        answers,
+        summary_text: buildSummary(answers),
         submitted_at: new Date().toISOString()
       };
 
