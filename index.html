@@ -281,7 +281,7 @@
           <input id="nome" type="text" required>
         </div>
         <div class="field">
-          <label for="email">E-mail <span class="required">*</span></label>
+          <label for="email">E-mail usado na compra <span class="required">*</span></label>
           <input id="email" type="email" required>
         </div>
         <div class="field">
@@ -630,7 +630,7 @@
         });
 
         payload.buyer_name = payload.answers["Nome completo"] || "";
-        payload.buyer_email = payload.answers["E-mail"] || "";
+        payload.buyer_email = payload.answers["E-mail usado na compra"] || "";
         payload.buyer_phone = payload.answers["WhatsApp"] || "";
 
         return payload;
