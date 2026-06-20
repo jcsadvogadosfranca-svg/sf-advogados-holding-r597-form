@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Preparar Sessao Estrategica</title>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const taskId = params.get("t") || params.get("task_id") || params.get("utm_content") || "";
+    const target = new URL("../formulario/", window.location.href);
+    if (taskId) target.searchParams.set("utm_content", taskId);
+    window.location.replace(target.toString());
+  </script>
+</head>
+<body>
+  <p>Redirecionando para o questionario de preparacao...</p>
+  <p><a href="../formulario/">Clique aqui se nao abrir automaticamente.</a></p>
+</body>
+</html>
